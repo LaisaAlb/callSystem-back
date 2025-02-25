@@ -1,5 +1,6 @@
 package com.laisa.callSystem.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.laisa.callSystem.domain.enums.Perfil;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -11,6 +12,7 @@ import java.util.List;
 public class Tecnico extends Pessoa{
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
 
