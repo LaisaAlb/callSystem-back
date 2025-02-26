@@ -1,6 +1,7 @@
 package com.laisa.callSystem.resources;
 
 import com.laisa.callSystem.domain.Tecnico;
+import com.laisa.callSystem.domain.dtos.TecnicoDTO;
 import com.laisa.callSystem.services.TecnicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class TecnicoResource {
 
     // Entitys: Queremos representar todas as respostas http
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Tecnico> findById(@PathVariable Integer id) {
+    public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
         Tecnico obj = this.service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body(new TecnicoDTO(obj));
     }
 
 }
