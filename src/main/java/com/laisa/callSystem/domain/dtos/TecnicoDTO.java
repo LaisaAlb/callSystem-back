@@ -3,10 +3,6 @@ package com.laisa.callSystem.domain.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.laisa.callSystem.domain.Tecnico;
 import com.laisa.callSystem.domain.enums.Perfil;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.FetchType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -29,6 +25,11 @@ public class TecnicoDTO implements Serializable {
 
     @JsonFormat(pattern = "dd/MM/yyyy" )
     protected LocalDate dataCriacao = LocalDate.now();
+
+    public TecnicoDTO() {
+        super();
+        addPerfil(Perfil.CLIENTE);
+    }
 
     public String getCpf() {
         return cpf;
