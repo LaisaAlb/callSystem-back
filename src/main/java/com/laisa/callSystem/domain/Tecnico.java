@@ -40,6 +40,10 @@ public class Tecnico extends Pessoa{
 
     }
 
+    public Tecnico() {
+
+    }
+
     public List<Chamado> getChamados() {
         return chamados;
     }
