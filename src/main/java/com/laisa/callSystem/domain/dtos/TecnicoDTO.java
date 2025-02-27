@@ -3,6 +3,7 @@ package com.laisa.callSystem.domain.dtos;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.laisa.callSystem.domain.Tecnico;
 import com.laisa.callSystem.domain.enums.Perfil;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,9 +18,13 @@ public class TecnicoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected Integer id;
+    @NotNull(message =  "O campo NOME é obrigatório")
     protected String nome;
+    @NotNull(message = "O campo CPF é obrigatório")
     protected String cpf;
+    @NotNull(message = "O campo Email é obrigatório")
     protected String email;
+    @NotNull(message = "O campo SENHA é obrigatório")
     protected String senha;
     protected Set<Integer> perfis = new HashSet<>();
 
