@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping(value = "/chamados")
@@ -22,5 +26,12 @@ public class ChamadoResource {
     public ResponseEntity<ChamadosDTO> findById(@PathVariable Integer id) {
         Chamado obj = service.findById(id);
         return ResponseEntity.ok().body(new ChamadosDTO(obj));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ChamadosDTO>> findAll() {
+        List<Chamado> list = service.findAll();
+        List<ChamadosDTO> listDTO = list.stream().map(obj -> new ChamadosDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 }
