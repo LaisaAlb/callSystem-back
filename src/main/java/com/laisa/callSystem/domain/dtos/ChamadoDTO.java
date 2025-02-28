@@ -2,11 +2,12 @@ package com.laisa.callSystem.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.laisa.callSystem.domain.Chamado;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ChamadosDTO implements Serializable {
+public class ChamadoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
@@ -14,20 +15,26 @@ public class ChamadosDTO implements Serializable {
     private LocalDate dataAbertura = LocalDate.now();
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
+    @NotNull(message = "O campo PRIORIDADE é obrigatório")
     private Integer prioridade;
+    @NotNull(message = "O campo STATUS é obrigatório")
     private Integer status;
+    @NotNull(message = "O campo TÍTULO é obrigatório")
     private String titulo;
+    @NotNull(message = "O campo OBSERVAÇÕES é obrigatório")
     private String observacoes;
+    @NotNull(message = "O campo TÉCNICO é obrigatório")
     private Integer tecnico;
+    @NotNull(message = "O campo CLIENTE é obrigatório")
     private Integer cliente;
     private String nomeTecnico;
     private String nomeCliente;
 
-    public ChamadosDTO() {
+    public ChamadoDTO() {
         super();
     }
 
-    public ChamadosDTO(Chamado obj) {
+    public ChamadoDTO(Chamado obj) {
         this.id = obj.getId();
         this.dataAbertura = obj.getDataAbertura();
         this.dataFechamento = obj.getDataFechamento();
