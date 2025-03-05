@@ -13,6 +13,7 @@ import com.laisa.callSystem.services.exceptions.ObjectNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +29,8 @@ public class ClienteService {
     private ClienteRepository repository;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public Cliente findById(Integer id) {
         Optional<Cliente> obj = repository.findById(id);
@@ -40,6 +43,7 @@ public class ClienteService {
 
     public Cliente create(ClienteDTO objDTO) {
         objDTO.setId(null);
+        objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         validaPorCpfEEmail(objDTO);
         Cliente newObj = new Cliente(objDTO);
         return repository.save(newObj);
