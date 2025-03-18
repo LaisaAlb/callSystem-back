@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -50,7 +51,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
 
         return httpSecurity
-                .csrf(csrf -> csrf.disable()) // DESATIVA CSRF (RECOMENDADO PARA APIS RESTFUL)
+                .csrf(AbstractHttpConfigurer::disable) // DESATIVA CSRF (RECOMENDADO PARA APIS RESTFUL)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // ATIVA CORS COM CONFIGURAÇÃO PERSONALIZADA
                 .addFilterBefore(new JWTAuthenticationFilter(authenticationManager, jwtUtil),
                         UsernamePasswordAuthenticationFilter.class) // FILTRO DE AUTENTICAÇÃO JWT
