@@ -4,12 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.laisa.callSystem.domain.enums.Prioridade;
 import com.laisa.callSystem.domain.enums.Status;
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
-import org.springframework.cglib.core.Local;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 public class Chamado implements Serializable {
